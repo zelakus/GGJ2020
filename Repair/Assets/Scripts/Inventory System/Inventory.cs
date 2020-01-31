@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Inventory
 {
@@ -22,6 +23,13 @@ public class Inventory
         }
     }
     public static Action CoinsUpdated;
+    public static int Size
+    {
+        get
+        {
+            return Bag.Length;
+        }
+    }
 
     //Item check
     public static bool HasItem(ItemType type)
@@ -72,7 +80,7 @@ public class Inventory
     //Item remove
     public static void RemoveAt(int index)
     {
-        if (index > 0 && index < Bag.Length)
+        if (index >= 0 && index < Bag.Length)
         {
             Bag[index] = new ItemAsset(); //Empty Item = Empty slot
         }
@@ -106,6 +114,48 @@ public class Inventory
         return false; //Inventory is full
     }
 
+    //Item set
+    public static void SetItem(int index, ItemType type)
+    {
+        if (index >= 0 && index < Bag.Length)
+        {
+            if (ItemManager.Items.ContainsKey(type))
+                Bag[index] = ItemManager.Items[type];
+            else
+                Bag[index] = null;
+        }
+        else
+            Debug.LogError($"Index is out of bounds. Given index: {index}. Inventory size: {Bag.Length}.");
+    }
+
     //Save & Load
-    //TODO
+    private static string SavePath
+    {
+        get
+        {
+            return Directory.GetParent(Application.dataPath).FullName + "\\inventory.dat";
+        }
+    }
+
+    public static void Deserialize()
+    {
+        var json = File.ReadAllText(SavePath);
+        var data = JsonUtility.FromJson<InventoryData>(json);
+        for (int i = 0; i < data.Items.Length; i++)
+        {
+            SetItem(i, (ItemType)data.Items[i]);
+        }
+    }
+
+    public static void Serialize()
+    {
+        var data = new InventoryData
+        {
+            Items = new int[Bag.Length]
+        };
+        for (int i = 0; i < Bag.Length; i++)
+            data.Items[i] = (int)(Bag[i]?.Type ?? 0);
+        
+        File.WriteAllText(SavePath, JsonUtility.ToJson(data, true));
+    }
 }

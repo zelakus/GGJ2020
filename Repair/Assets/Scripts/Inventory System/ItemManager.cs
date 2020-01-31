@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : MonoBehaviour, IInitable
 {
     public List<ItemAsset> ItemAssets = new List<ItemAsset>();
     public static Dictionary<ItemType, ItemAsset> Items { get; private set; }
 
-    public void Start()
+    public void Init()
     {
+        Items = new Dictionary<ItemType, ItemAsset>();
         LoadItems();
     }
 

@@ -1,6 +1,6 @@
 ﻿public enum ItemType : int
 {
-    Nothing,
+    Nothing = 0,
     Glue,
     Sword,
     Bone,

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919a837e21666384ea3344344cdb8704, type: 3}
+  m_Name: Glue
+  m_EditorClassIdentifier: 
+  Type: 1
+  Name: Glue
+  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Description: They say that this glue is from a country called Japan! It's perfect
+    to repair the vase you broke. Hurry before mom finds out!
+  DropItem: {fileID: 0}
