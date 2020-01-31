@@ -17,11 +17,18 @@ public class Health : MonoBehaviour
         {
             currentHealth = (uint)Mathf.Clamp(value, 0, maxHealth);
 
-            (currentHealth == 0 ? Died : HealthUpdated)?.Invoke();
+            //(currentHealth == 0 ? Died : HealthUpdated)?.Invoke();
+            if (currentHealth == 0)
+            {
+                Died();
+            }
+            else
+                HealthUpdated();
+            
         }
     }
-    public static Action HealthUpdated;
-    public static Action Died;
+    public event Action HealthUpdated;
+    public event Action Died;
 
     private void Awake()
     {
