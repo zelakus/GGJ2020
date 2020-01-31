@@ -36,9 +36,19 @@ public class Inventory
     }
 
     //Item Get
+    public static ItemAsset GetItem(int index)
+    {
+        if (index < 0 || index > Bag.Length)
+            Debug.LogError($"Index is out of bounds. Given index: {index}. Inventory size: {Bag.Length}.");
+        else
+            return Bag[index];
+
+        return null;
+    }
+
     public static int GetItem(ItemType type)
     {
-        for (int i=0;i<Bag.Length;i++)
+        for (int i = 0; i < Bag.Length; i++)
         {
             if (Bag[i].Type == type)
                 return i;
@@ -95,4 +105,7 @@ public class Inventory
 
         return false; //Inventory is full
     }
+
+    //Save & Load
+    //TODO
 }

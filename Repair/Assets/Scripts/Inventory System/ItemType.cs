@@ -5,5 +5,5 @@
     Sword,
     Bone,
     Flower,
-    ColumnPart
+    ColumnPiece
 }
