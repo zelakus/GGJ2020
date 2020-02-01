@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6859663236833754921}
   - component: {fileID: 2502552270872352733}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 2111953519620647485}
   - component: {fileID: 3945044999375959229}
   - component: {fileID: 3945044999375959200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skelton@Samba Dancing
   m_TagString: Untagged
   m_Icon: {fileID: 0}

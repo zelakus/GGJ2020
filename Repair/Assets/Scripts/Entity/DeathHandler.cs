@@ -15,6 +15,6 @@ public class DeathHandler : MonoBehaviour
 
     void Death()
     {
-        Destroy(gameObject);
+        UIController.Instance.TriggerDeathScreen();
     }
 }

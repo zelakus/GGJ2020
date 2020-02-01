@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] uint maxHealth = 5;
 
-    private uint currentHealth;
+    public uint currentHealth;
     public uint CurrentHealth
     {
         get
