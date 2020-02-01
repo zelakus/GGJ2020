@@ -24,6 +24,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
 
     void Update()
     {
+        //Debug only!!!
         if (Input.GetKeyDown(KeyCode.U))
             Inventory.Serialize();
     }
@@ -47,7 +48,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             {
                 var from = MovingItem.transform.parent.GetComponent<ItemSlot>().Index;
                 var to = slot.GetComponent<ItemSlot>().Index;
-                Debug.Log("Take " + from + " to " + to);
                 if (from != to)
                     Move(from, to);
             }
@@ -73,9 +73,12 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
         if (item == null || item.Type == ItemType.Nothing)
             return;
 
+        //Spawn drop object
         var player = GameObject.FindWithTag("Player");
         if (item.DropItem != null)
             Instantiate(item.DropItem, player.transform.position, Quaternion.identity);
+
+        //Remove from inventory and update UI
         Inventory.RemoveAt(index);
         SetUI(index, null);
     }
@@ -95,8 +98,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
     {
         Inventory.Deserialize();
         for (int i=0;i<Inventory.Size;i++)
-        {
             SetUI(i, Inventory.GetItem(i));
-        }
     }
 }

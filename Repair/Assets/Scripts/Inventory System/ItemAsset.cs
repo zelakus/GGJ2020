@@ -7,5 +7,6 @@ public class ItemAsset : ScriptableObject
     public string Name = "";
     public Sprite Icon;
     public string Description = "";
+    public int Price = 0;
     public GameObject DropItem;
 }

@@ -9,7 +9,6 @@ public class UIController : MonoBehaviour
     public GameObject EscMenuPanel;
     public IPopUp PopUpScreen;
 
-
     void Awake()
     {
         var scripts = GetComponentsInChildren<IInitable>(true);
@@ -26,8 +25,9 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             TriggerEscMenu();
 
-        if (Input.GetKeyDown(KeyCode.F))//Remove
-            TriggerDeathScreen();//Remove
+        //Debug only!
+        if (Input.GetKeyDown(KeyCode.F))
+            TriggerDeathScreen();
     }
 
     bool isEscMenuVisible = false;
