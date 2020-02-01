@@ -2,16 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class SavingWrapper : MonoBehaviour
 {
     const string defaultSaveFile = "save";
     [SerializeField] float fadeInTime = 0.2f;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    StartCoroutine(LoadLastScene());
+    //}
+
+        public void NewGame()
     {
-        StartCoroutine(LoadLastScene());
+        SceneManager.LoadScene(1);
     }
 
     private IEnumerator LoadLastScene()

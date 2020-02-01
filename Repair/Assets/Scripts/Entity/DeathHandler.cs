@@ -16,5 +16,9 @@ public class DeathHandler : MonoBehaviour
     void Death()
     {
         UIController.Instance.TriggerDeathScreen();
+        PlayerPrefs.SetInt("coins", PlayerController.Coins);
     }
+
+
+    
 }
