@@ -27,7 +27,15 @@ public class Movement : MonoBehaviour, ISaveable
     {
         CharacterMovement();
         Rotate();
-        StartCoroutine(Jump());
+        if (Input.GetAxis("Jump") != 0 && isJumping == false)
+        {
+            isJumping = true;
+            anim.SetBool("isJumping", true);
+            rb.AddForce(new Vector3(0, jumpForce) * Time.deltaTime * 5000f);
+            Debug.Log(isJumping);
+        }
+       
+
 
         if (Input.GetButtonDown("Fire1") && !isJumping)
         {
@@ -55,12 +63,10 @@ public class Movement : MonoBehaviour, ISaveable
     {
         if (Input.GetKeyDown(KeyCode.A) && transform.rotation.y > 0)
         {
-            rb.velocity = Vector3.zero;
             transform.Rotate(Vector3.up * -180f);
         }
         if (Input.GetKeyDown(KeyCode.D) && transform.rotation.y < 0)
         {
-            rb.velocity = Vector3.zero;
             transform.Rotate(Vector3.up * 180f);
         }
     }
@@ -68,20 +74,8 @@ public class Movement : MonoBehaviour, ISaveable
 
     IEnumerator Jump()
     {
-        if (Input.GetAxis("Jump") != 0 && isJumping == false)
-        {
-            anim.SetBool("isJumping", true);
-        }
-        for (int i = 0; i < 18; i++)
-        {
-            yield return null;
-        }
-        if (Input.GetAxis("Jump") != 0 && isJumping == false)
-        {
-          
-            rb.AddForce(new Vector3(0, jumpForce) * Time.deltaTime * 5000f);
-            isJumping = true;
-        }
+        
+        yield return null;
        
     }
     void JumpStop()
@@ -118,7 +112,7 @@ public class Movement : MonoBehaviour, ISaveable
    
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && rb.velocity.y<=0)
         {
           
             isJumping = false;
