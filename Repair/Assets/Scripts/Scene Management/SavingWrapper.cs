@@ -19,7 +19,12 @@ public class SavingWrapper : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    private IEnumerator LoadLastScene()
+    public void LoadScene()
+    {
+        StartCoroutine(LoadLastScene());
+    }
+
+    public IEnumerator LoadLastScene()
     {
         yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         Fader fader = FindObjectOfType<Fader>();
