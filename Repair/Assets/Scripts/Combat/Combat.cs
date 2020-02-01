@@ -43,6 +43,8 @@ public class Combat : MonoBehaviour
     {
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f)
         {
+            var offset =  transform.position - player.transform.position;
+            transform.LookAt(player.transform.position - new Vector3(0f,player.transform.position.y));
             anim.SetBool("isAttacking", true);
 
         }
@@ -52,6 +54,13 @@ public class Combat : MonoBehaviour
         }
     }
 
-   
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag =="Player")
+        {
+            player.GetComponent<Health>().CurrentHealth -= 1;
+        }
+    }
+
+
 }

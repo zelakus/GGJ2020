@@ -27,11 +27,14 @@ public class SavingWrapper : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F8))
         {
             Load();
+            Inventory.Deserialize();
+            ShopManager.Serialize();
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Save();
             Inventory.Serialize();
+            ShopManager.Serialize();
         }
         if (Input.GetKeyDown(KeyCode.Delete))
         {
