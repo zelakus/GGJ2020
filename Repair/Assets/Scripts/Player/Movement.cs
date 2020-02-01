@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour, ISaveable
 
     float horizontal;
     bool isJumping;
-
+    Vector3 position;
 
     void Start()
     {
@@ -25,19 +25,35 @@ public class Movement : MonoBehaviour, ISaveable
 
     void Update()
     {
+        CharacterMovement();
+        Rotate();
+        StartCoroutine(Jump());
 
+        if (Input.GetButtonDown("Fire1") && !isJumping)
+        {
+            anim.SetTrigger("attack");
+        }
+       
+    }
+
+    private void CharacterMovement()
+    {
         horizontal = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(horizontal,0) * speed * Time.deltaTime;
 
+        position = rb.position;
+        position.x = position.x + horizontal * speed * Time.deltaTime;
+        position.y = position.y + 0 * speed * Time.deltaTime;
+        //transform.position += new Vector3(horizontal, 0) * speed * Time.deltaTime;
+        rb.MovePosition(position);
         if (Input.GetAxis("Horizontal") != 0)
         {
             anim.SetFloat("speed", Mathf.Abs(Input.GetAxis("Horizontal") * speed));
         }
+    }
 
-        StartCoroutine(Jump());
-
-
-        if (Input.GetKeyDown(KeyCode.A) && transform.rotation.y> 0)
+    private void Rotate()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && transform.rotation.y > 0)
         {
             rb.velocity = Vector3.zero;
             transform.Rotate(Vector3.up * -180f);
@@ -47,13 +63,8 @@ public class Movement : MonoBehaviour, ISaveable
             rb.velocity = Vector3.zero;
             transform.Rotate(Vector3.up * 180f);
         }
-        
-
-
-       
     }
 
-   
 
     IEnumerator Jump()
     {
@@ -67,6 +78,7 @@ public class Movement : MonoBehaviour, ISaveable
         }
         if (Input.GetAxis("Jump") != 0 && isJumping == false)
         {
+          
             rb.AddForce(new Vector3(0, jumpForce) * Time.deltaTime * 5000f);
             isJumping = true;
         }
@@ -81,26 +93,44 @@ public class Movement : MonoBehaviour, ISaveable
         anim.speed = 0.1f;
     }
 
-
-    public float GetCurrentAnimatorTime(Animator targetAnim, int layer = 0)
+    private void OnTriggerEnter(Collider other)
     {
-        AnimatorStateInfo animState = targetAnim.GetCurrentAnimatorStateInfo(layer);
-        float currentTime = animState.normalizedTime % 1;
-        return currentTime;
+        if (other.gameObject.tag == "Platform")
+        {
+            isJumping = false;
+            anim.SetBool("isJumping", false);
+            gameObject.transform.parent = other.gameObject.transform;
+            anim.speed = 1f;
+        }
     }
-
-
+    private void OnTriggerExit(Collider other)
+    {
+        gameObject.transform.parent = null;
+    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+       
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    gameObject.transform.parent = null;
+    //}
+   
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
+          
             isJumping = false;
             anim.SetBool("isJumping", false);
             //anim.enabled = true;
             anim.speed = 1f;
         }
+        
     }
 
+
+    #region saving
     public object CaptureState()
     {
         return new SerializableVector3(transform.position);
@@ -113,6 +143,6 @@ public class Movement : MonoBehaviour, ISaveable
     }
 
 
-    
+    #endregion
 
 }
