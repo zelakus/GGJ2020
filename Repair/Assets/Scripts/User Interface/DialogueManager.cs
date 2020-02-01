@@ -17,6 +17,12 @@ public class DialogueManager : MonoBehaviour, IInitable
         Instance = this;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && DialogueVisible)
+            DisplayNextSentence();
+    }
+
     private Queue<string> sentences;
     public static void StartDialogue(Dialogue dialogue)
     {
