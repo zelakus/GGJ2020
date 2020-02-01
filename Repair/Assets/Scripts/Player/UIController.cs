@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     public GameObject InventoryPanel;
     public GameObject DeathScreenPanel;
     public GameObject EscMenuPanel;
     public IPopUp PopUpScreen;
 
-
     void Awake()
     {
+        Instance = this;
         var scripts = GetComponentsInChildren<IInitable>(true);
         foreach (var script in scripts)
             script.Init();
     }
 
-
+    public bool IsBusy
+    {
+        get
+        {
+            return isEscMenuVisible || isDeathScreenVisible || isInventoryVisible || IsPopUpVisible;
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -26,8 +33,9 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             TriggerEscMenu();
 
-        if (Input.GetKeyDown(KeyCode.F))//Remove
-            TriggerDeathScreen();//Remove
+        //Debug only!
+        if (Input.GetKeyDown(KeyCode.F))
+            TriggerDeathScreen();
     }
 
     bool isEscMenuVisible = false;
@@ -51,12 +59,13 @@ public class UIController : MonoBehaviour
 
         isDeathScreenVisible ^= true; //Trigger
         DeathScreenPanel.SetActive(isDeathScreenVisible);
+        DialogueManager.EndDialogue();
     }
 
     bool isInventoryVisible = false;
     void TriggerInventory()
     {
-        if (isEscMenuVisible || isDeathScreenVisible || IsPopUpVisible)
+        if (isEscMenuVisible || isDeathScreenVisible || IsPopUpVisible || DialogueManager.DialogueVisible)
             return;
 
         isInventoryVisible ^= true; //Trigger
