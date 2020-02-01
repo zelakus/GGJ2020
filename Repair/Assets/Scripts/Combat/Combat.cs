@@ -16,13 +16,16 @@ public class Combat : MonoBehaviour
 
     void Update()
     {
+       
         attack();
 
         if (gameObject.tag != "Player")
         {
+          
             npcAttack();
         }
     }
+    
 
 
     void attack()
@@ -35,13 +38,20 @@ public class Combat : MonoBehaviour
 
 
 
-
-
+   
     void npcAttack()
     {
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f)
         {
-            anim.SetTrigger("attack");
+            anim.SetBool("isAttacking", true);
+
+        }
+        else
+        {
+            anim.SetBool("isAttacking", false);
         }
     }
+
+   
+    
 }

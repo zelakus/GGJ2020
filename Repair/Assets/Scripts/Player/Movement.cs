@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour, ISaveable
 
     Rigidbody rb;
     Animator anim;
-
+   
 
     float horizontal;
     public bool isJumping;
