@@ -7,8 +7,10 @@ using TMPro;
 public class DialogueManager : MonoBehaviour, IInitable
 {
     private static DialogueManager Instance;
+    public static bool DialogueVisible { get; private set; }
     public TMP_Text NameHolder;
     public TMP_Text SentenceHolder;
+    public Animator animator;
 
     public void Init()
     {
@@ -18,6 +20,12 @@ public class DialogueManager : MonoBehaviour, IInitable
     private Queue<string> sentences;
     public static void StartDialogue(Dialogue dialogue)
     {
+        //Cancel if there is already a dialogue
+        if (DialogueVisible || UIController.Instance.IsBusy)
+            return;
+
+        DialogueVisible = true;
+
         //Get sentence queue
         Instance.sentences = new Queue<string>();
         foreach (var sentence in dialogue.sentences)
@@ -27,7 +35,8 @@ public class DialogueManager : MonoBehaviour, IInitable
         Instance.NameHolder.SetText(dialogue.name);
         Instance.DisplayNextSentence();
 
-        //TODO animation
+        //Animation
+        Instance.animator.SetBool("show", true);
     }
 
     Coroutine typer;
@@ -59,8 +68,10 @@ public class DialogueManager : MonoBehaviour, IInitable
         typer = null;
     }
 
-    void EndDialogue()
+    public static void EndDialogue()
     {
-        //TODO animation
+        DialogueVisible = false;
+        //Animation
+        Instance.animator.SetBool("show", false);
     }
 }

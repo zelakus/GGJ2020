@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance;
     public GameObject InventoryPanel;
     public GameObject DeathScreenPanel;
     public GameObject EscMenuPanel;
@@ -11,12 +12,19 @@ public class UIController : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         var scripts = GetComponentsInChildren<IInitable>(true);
         foreach (var script in scripts)
             script.Init();
     }
 
-
+    public bool IsBusy
+    {
+        get
+        {
+            return isEscMenuVisible || isDeathScreenVisible || isInventoryVisible || IsPopUpVisible;
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -51,12 +59,13 @@ public class UIController : MonoBehaviour
 
         isDeathScreenVisible ^= true; //Trigger
         DeathScreenPanel.SetActive(isDeathScreenVisible);
+        DialogueManager.EndDialogue();
     }
 
     bool isInventoryVisible = false;
     void TriggerInventory()
     {
-        if (isEscMenuVisible || isDeathScreenVisible || IsPopUpVisible)
+        if (isEscMenuVisible || isDeathScreenVisible || IsPopUpVisible || DialogueManager.DialogueVisible)
             return;
 
         isInventoryVisible ^= true; //Trigger
