@@ -6,9 +6,9 @@ public class UIController : MonoBehaviour
 {
     public static UIController Instance;
     public GameObject InventoryPanel;
+    public GameObject ShopPanel;
     public GameObject DeathScreenPanel;
     public GameObject EscMenuPanel;
-    public IPopUp PopUpScreen;
 
     void Awake()
     {
@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
     {
         get
         {
-            return isEscMenuVisible || isDeathScreenVisible || isInventoryVisible || IsPopUpVisible;
+            return isEscMenuVisible || isDeathScreenVisible || isInventoryVisible || isShopVisible;
         }
     }
     void Update()
@@ -32,10 +32,6 @@ public class UIController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
             TriggerEscMenu();
-
-        //Debug only!
-        if (Input.GetKeyDown(KeyCode.F))
-            TriggerDeathScreen();
     }
 
     bool isEscMenuVisible = false;
@@ -55,8 +51,6 @@ public class UIController : MonoBehaviour
         if (isInventoryVisible)
             TriggerInventory();
 
-        PopUpScreen?.Close();
-
         isDeathScreenVisible ^= true; //Trigger
         DeathScreenPanel.SetActive(isDeathScreenVisible);
         DialogueManager.EndDialogue();
@@ -65,20 +59,20 @@ public class UIController : MonoBehaviour
     bool isInventoryVisible = false;
     void TriggerInventory()
     {
-        if (isEscMenuVisible || isDeathScreenVisible || IsPopUpVisible || DialogueManager.DialogueVisible)
+        if (isEscMenuVisible || isDeathScreenVisible || DialogueManager.DialogueVisible || isShopVisible)
             return;
 
         isInventoryVisible ^= true; //Trigger
         InventoryPanel.SetActive(isInventoryVisible);
     }
 
-    public static bool IsPopUpVisible = false;
-    public static void ShowPopUp(GameObject popup)
+    bool isShopVisible = false;
+    public static void TriggerShop()
     {
-        if (IsPopUpVisible)
+        if (Instance.isEscMenuVisible || Instance.isDeathScreenVisible || DialogueManager.DialogueVisible || Instance.isInventoryVisible)
             return;
 
-        IsPopUpVisible = true;
-        popup.SetActive(true);
+        Instance.isShopVisible ^= true; //Trigger
+        Instance.ShopPanel.SetActive(Instance.isShopVisible);
     }
 }

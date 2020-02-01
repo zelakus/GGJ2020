@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 3
   Name: Bone
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: 92f7527e3787e904f96ec7ab24bbef29, type: 3}
   Description: A piece of bone, dropped from the skeletons. Ew...
+  Price: 0
   DropItem: {fileID: 0}

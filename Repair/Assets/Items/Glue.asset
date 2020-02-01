@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Name: Glue
-  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: 81f458f96864d9347a67c6c507860fde, type: 3}
   Description: They say that this glue is from a country called Japan! It's perfect
     to repair the vase you broke. Hurry before mom finds out!
   Price: 5

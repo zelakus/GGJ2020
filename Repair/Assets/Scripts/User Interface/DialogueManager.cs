@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour, IInitable
 {
@@ -48,6 +49,7 @@ public class DialogueManager : MonoBehaviour, IInitable
     Coroutine typer;
     public void DisplayNextSentence()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (sentences.Count == 0)
         {
             EndDialogue();

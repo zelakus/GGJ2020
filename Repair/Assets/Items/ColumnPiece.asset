@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Name: Column Piece
-  Icon: {fileID: 0}
-  Description: A piece of the broken Column. Combine 3 of them using a glue!
+  Icon: {fileID: 21300000, guid: 43a18c3f38b1af24e837e085f3b30e4b, type: 3}
+  Description: A piece of the broken Column. Combine III of them using a glue!
   Price: 0
   DropItem: {fileID: 0}

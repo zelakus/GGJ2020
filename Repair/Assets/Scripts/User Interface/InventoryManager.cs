@@ -29,13 +29,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
         Load();
     }
 
-    void Update()
-    {
-        //Debug only!!!
-        if (Input.GetKeyDown(KeyCode.U))
-            Inventory.Serialize();
-    }
-
     public void OnDrop(PointerEventData eventData)
     {
         if (MovingItem == null)
@@ -98,7 +91,13 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
 
         //Create new image
         if (item != null && item.Type != ItemType.Nothing)
-            Instantiate(InventoryItem, Slots[index].transform).GetComponent<Image>().sprite = item.Icon;
+        {
+            var image = Instantiate(InventoryItem, Slots[index].transform).GetComponent<Image>();
+            image.sprite = item.Icon;
+
+            if (item.Type == ItemType.Glue)
+                image.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     public void Load()
@@ -125,5 +124,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             Instance.ItemInfo.SetText(item.Description);
             Instance.ItemPanel.SetActive(true);
         }
+    }
+
+    public static void UseGlue(Transform t)
+    {
+
     }
 }
