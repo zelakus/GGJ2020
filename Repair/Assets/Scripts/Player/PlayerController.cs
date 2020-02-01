@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Health), typeof(UIController), typeof(DeathHandler))]
+[RequireComponent(typeof(Health), typeof(DeathHandler))]
 class PlayerController : MonoBehaviour
 {
 

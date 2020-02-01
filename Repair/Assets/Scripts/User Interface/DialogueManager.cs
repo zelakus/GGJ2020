@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour, IInitable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && DialogueVisible)
+        if (Input.GetKeyDown(KeyCode.Return) && DialogueVisible)
             DisplayNextSentence();
     }
 

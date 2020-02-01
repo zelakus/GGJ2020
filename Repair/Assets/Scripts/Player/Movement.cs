@@ -25,6 +25,9 @@ public class Movement : MonoBehaviour, ISaveable
 
     void Update()
     {
+        if (UIController.Instance.IsBusy || DialogueManager.DialogueVisible)
+            return;
+
         CharacterMovement();
         Rotate();
         if (Input.GetAxis("Jump") != 0 && isJumping == false)
