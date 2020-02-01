@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
+public class CombineManager : MonoBehaviour, IDropHandler, IInitable
 {
-    public static InventoryManager Instance;
+    public static CombineManager Instance;
     public static GameObject MovingItem;
     public GridLayoutGroup Grid;
     public GameObject InventoryItem;
@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
     readonly List<ItemSlot> Slots = new List<ItemSlot>();
     public void Init()
     {
+        return;
         Instance = this;
         foreach (Transform slotTransform in Grid.transform)
         {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -16,5 +16,15 @@ public class DragItem : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.localPosition = Vector3.zero;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        InventoryManager.HoverItem(gameObject);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        InventoryManager.HoverItem(null);
     }
 }
