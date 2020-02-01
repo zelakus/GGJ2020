@@ -4,50 +4,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-    public class SavingWrapper : MonoBehaviour
+public class SavingWrapper : MonoBehaviour
+{
+    const string defaultSaveFile = "save";
+    [SerializeField] float fadeInTime = 0.2f;
+
+    private void Awake()
     {
-        const string defaultSaveFile = "save";
-        [SerializeField] float fadeInTime = 0.2f;
+        StartCoroutine(LoadLastScene());
+    }
 
-        private void Awake()
-        {
-            StartCoroutine(LoadLastScene());
-        }
-
-        private IEnumerator LoadLastScene()
-        {
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+    private IEnumerator LoadLastScene()
+    {
+        yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         Fader fader = FindObjectOfType<Fader>();
         fader.FadeOutImmediate();
         yield return fader.FadeIn(fadeInTime);
     }
 
-        void Update()
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F8))
         {
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                Load();
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                Save();
-            }
-            if (Input.GetKeyDown(KeyCode.Delete))
-            {
-                Delete();
-            }
+            Load();
         }
-        public void Save()
+        if (Input.GetKeyDown(KeyCode.F5))
         {
-            GetComponent<SavingSystem>().Save(defaultSaveFile);
+            Save();
+            Inventory.Serialize();
         }
-        public void Load()
+        if (Input.GetKeyDown(KeyCode.Delete))
         {
-            GetComponent<SavingSystem>().Load(defaultSaveFile);
-        }
-
-        public void Delete()
-        {
-            GetComponent<SavingSystem>().Delete(defaultSaveFile);
+            Delete();
         }
     }
+    public void Save()
+    {
+        GetComponent<SavingSystem>().Save(defaultSaveFile);
+    }
+    public void Load()
+    {
+        GetComponent<SavingSystem>().Load(defaultSaveFile);
+    }
+
+    public void Delete()
+    {
+        GetComponent<SavingSystem>().Delete(defaultSaveFile);
+    }
+}
