@@ -189,13 +189,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 172920005, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.034412134
+      value: 0.034412168
       objectReference: {fileID: 0}
     - target: {fileID: 172920005, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.008323181
+      value: -0.008323189
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 172920005, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.23495042
+      objectReference: {fileID: 0}
+    - target: {fileID: 172920005, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296172668746142040, guid: 931e8829fb7940745803a6da18681a0c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 800898327, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 931e8829fb7940745803a6da18681a0c, type: 3}
 --- !u!1 &407673226
 GameObject:
