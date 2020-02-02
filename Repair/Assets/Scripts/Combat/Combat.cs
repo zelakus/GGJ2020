@@ -34,7 +34,7 @@ public class Combat : MonoBehaviour
 
     void attack()
     {
-        if (Input.GetButtonDown("Fire1") && GetComponent<Movement>().isJumping != true)
+        if (Input.GetButtonDown("Jump") && GetComponent<Movement>().isJumping != true)
         {
             anim.SetTrigger("attack");
         }

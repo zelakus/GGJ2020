@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour, ISaveable
 
     void Jump()
     {
-        if (Input.GetAxis("Jump") != 0 && isJumping == false)
+        if (Input.GetAxis("Vertical")>0 && isJumping == false)
         {
             isJumping = true;
             anim.SetBool("isJumping", true);
