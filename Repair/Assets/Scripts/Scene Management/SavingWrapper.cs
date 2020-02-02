@@ -51,13 +51,15 @@ public class SavingWrapper : MonoBehaviour
         {
             Load();
             Inventory.Deserialize();
-            ShopManager.Serialize();
+            ShopManager.Deserialize();
+
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Save();
             Inventory.Serialize();
             ShopManager.Serialize();
+            PlayerPrefs.SetInt("hasWeapon", PlayerController.hasWeapon?1:0);
         }
         if (Input.GetKeyDown(KeyCode.Delete))
         {
