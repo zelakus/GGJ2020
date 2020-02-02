@@ -25,7 +25,11 @@ public class Health : MonoBehaviour, ISaveable
                 {
                     Destroy(gameObject);
                 }
-                Died();
+                else
+                {
+                    Died();
+                }
+
             }
             //else
             //    HealthUpdated();
@@ -37,7 +41,11 @@ public class Health : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        if (currentHealth == 0)
+        {
+            currentHealth = maxHealth;
+        }
+        
     }
 
     public object CaptureState()
