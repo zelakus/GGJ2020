@@ -19,7 +19,7 @@ class PlayerController : MonoBehaviour
         Coins = PlayerPrefs.GetInt("coins", 0);
     }
 
-    private void GenerateSword()
+    public void GenerateSword()
     {
         Instantiate(weaponPrefab, handTransform);
         hasWeapon = true;

@@ -31,17 +31,17 @@ public class Combat : MonoBehaviour
     }
 
 
-
+    public static bool HasSword = false;
     void attack()
     {
+        if (!HasSword)
+            return;
+
         if (Input.GetButtonDown("Jump") && GetComponent<Movement>().isJumping != true)
         {
             anim.SetTrigger("attack");
         }
     }
-
-
-
 
     void npcAttack()
     {

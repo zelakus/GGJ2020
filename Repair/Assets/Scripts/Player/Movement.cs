@@ -26,7 +26,10 @@ public class Movement : MonoBehaviour, ISaveable
     void Update()
     {
         if (UIController.Instance.IsBusy || DialogueManager.DialogueVisible)
+        {
+            anim.SetFloat("speed", 0);
             return;
+        }
 
         CharacterMovement();
         Rotate();

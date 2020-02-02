@@ -64,12 +64,14 @@ public class DialogueManager : MonoBehaviour, IInitable
         typer = StartCoroutine(TypeText(sentences.Dequeue()));
     }
 
+    string ctext = "";
     IEnumerator TypeText(string text)
     {
-        Instance.SentenceHolder.SetText("");
+        ctext = "";
         foreach (var letter in text.ToCharArray())
         {
-            Instance.SentenceHolder.SetText(Instance.SentenceHolder.text + letter);
+            ctext += letter;
+            Instance.SentenceHolder.SetText(text);
             yield return null;
         }
 

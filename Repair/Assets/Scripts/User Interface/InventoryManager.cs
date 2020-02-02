@@ -162,7 +162,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
                 Inventory.RemoveAt(ind);
                 break;
             case ItemType.Sword:
-
+                Inventory.RemoveAt(ind);
+                Combat.HasSword = true;
+                GameObject.FindWithTag("Player").GetComponent<PlayerController>().GenerateSword();
+                InventoryManager.UpdateUI();
                 break;
         }
     }
