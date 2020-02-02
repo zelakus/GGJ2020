@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 919a837e21666384ea3344344cdb8704, type: 3}
-  m_Name: Sword
+  m_Name: Pizza
   m_EditorClassIdentifier: 
-  Type: 2
-  Name: Stone Sword
-  Icon: {fileID: 21300000, guid: 8560901c4a0884e40a197ea77893134e, type: 3}
-  Description: It's dangerous to go alone! Take this.
+  Type: 0
+  Name: Pizza
+  Icon: {fileID: 21300000, guid: 5a909488426d4c54086f06d6312fb33f, type: 3}
+  Description: One yummy slice of pizza! :P
   Price: 0
   DropItem: {fileID: 0}
