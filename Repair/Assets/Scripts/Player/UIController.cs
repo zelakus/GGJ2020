@@ -34,7 +34,8 @@ public class UIController : MonoBehaviour
             TriggerEscMenu();
     }
 
-    bool isEscMenuVisible = false;
+    //TODO get metoduna çek
+    public bool isEscMenuVisible = false;
     public void TriggerEscMenu()
     {
         isEscMenuVisible ^= true; //Trigger
@@ -45,7 +46,7 @@ public class UIController : MonoBehaviour
             Time.timeScale = 1f;
     }
 
-    bool isDeathScreenVisible = false;
+    public bool isDeathScreenVisible = false;
     public void TriggerDeathScreen()
     {
         if (isInventoryVisible)

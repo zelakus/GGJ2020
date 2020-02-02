@@ -58,20 +58,25 @@ public class Combat : MonoBehaviour
     }
 
     //TODO buraya göz gezdir. Kendine vurunca da canı gidiyor. Veya direk ona koştun mu can gidiyor. Keza bizden de
-    private void OnCollisionEnter(Collision collision)
-    {
-        //if (collision.gameObject.layer != gameObject.layer && collision.gameObject.layer != 0)
-        //{
-        //    if (collision.gameObject.tag == "Player")
-        //    {
-        //        player.GetComponent<Health>().CurrentHealth -= 1;
-        //    }
-        //    else if (collision.gameObject.layer == 10)
-        //    {
-        //        collision.gameObject.GetComponent<Health>().CurrentHealth -= 1;
-        //    }
-        //}
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Weapon")
+    //    {
+    //        collision.gameObject.GetComponent<Health>().CurrentHealth -= 1;
+    //    }
+    //    if (collision.gameObject.layer != gameObject.layer && collision.gameObject.layer != 0)
+    //    {
+            
+           
+    //    }
+    //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Weapon")
+    //    {
+    //        other.gameObject.GetComponent<Health>().CurrentHealth -= 1;
+    //    }
+    //}
 
 
     void SkeletonHit()
@@ -79,6 +84,21 @@ public class Combat : MonoBehaviour
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f)
         {
             player.GetComponent<Health>().CurrentHealth -= 1;
+        }
+    }
+
+    void SwordHit()
+    {
+      var a=   GameObject.FindObjectsOfType<Combat>();
+        foreach (var item in a)
+        {
+            if (item.gameObject.tag != "Player")
+            {
+                if (Vector3.Distance(item.gameObject.transform.position, player.transform.position)<3)
+                {
+                    item.gameObject.GetComponent<Health>().CurrentHealth -= 1;
+                }
+            }
         }
     }
 

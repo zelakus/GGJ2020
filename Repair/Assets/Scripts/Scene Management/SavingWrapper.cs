@@ -11,33 +11,40 @@ public class SavingWrapper : MonoBehaviour
 
     private void Awake()
     {
-        //StartCoroutine(LoadLastScene());
-        //if (SceneManager.GetActiveScene().buildIndex!=0)
-        //{
-        //    Load();
-        //}
+        
     }
 
+    //TODO bunları daha sonra scene Changer a al 
     public void NewGame()
     {
         SceneManager.LoadScene(1);
+        UIChanger();
     }
+
+
 
     public void LoadScene()
     {
         StartCoroutine(LoadLastScene());
-        
+        UIChanger();
+       
     }
+
+
 
     public IEnumerator LoadLastScene()
     {
+        //TODO bunu persistent objecte yerleştir. 
+        DontDestroyOnLoad(this.gameObject);
         yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         Fader fader = FindObjectOfType<Fader>();
         fader.FadeOutImmediate();
         yield return fader.FadeIn(fadeInTime);
-        
+        Destroy(gameObject);
+       
     }
 
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F8))
@@ -64,10 +71,21 @@ public class SavingWrapper : MonoBehaviour
     public void Load()
     {
         GetComponent<SavingSystem>().Load(defaultSaveFile);
+        UIChanger();
     }
 
     public void Delete()
     {
         GetComponent<SavingSystem>().Delete(defaultSaveFile);
+    }
+
+
+    private static void UIChanger()
+    {
+        UIController.Instance.EscMenuPanel.SetActive(false);
+        UIController.Instance.DeathScreenPanel.SetActive(false);
+        Time.timeScale = 1f;
+        UIController.Instance.isEscMenuVisible = false;
+        UIController.Instance.isDeathScreenVisible = false;
     }
 }
