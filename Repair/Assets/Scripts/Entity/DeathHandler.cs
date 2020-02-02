@@ -11,16 +11,10 @@ public class DeathHandler : MonoBehaviour
     {
         GetComponent<Health>().Died += Death;
     }
-    
+
 
     void Death()
     {
-       
-            UIController.Instance.TriggerDeathScreen();
-            PlayerPrefs.SetInt("coins", PlayerController.Coins);
-       
+        UIController.Instance.TriggerDeathScreen();
     }
-
-
-    
 }

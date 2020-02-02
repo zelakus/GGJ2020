@@ -39,6 +39,7 @@ public class ShopManager : MonoBehaviour, IInitable
 
     public void UpdateUI()
     {
+        InventoryManager.UpdateUI();
         for (int i=0;i<Buttons.Count;i++)
         {
             var text = $"{Prices[i]} " + (Prices[i] == 1 ? "Coin" : "Coins") + $" ({Stocks[i]}x)";
@@ -58,10 +59,11 @@ public class ShopManager : MonoBehaviour, IInitable
 
     public void Buy1()
     {
-        if (PlayerController.Coins > Prices[0])
+        if (PlayerController.Coins >= Prices[0])
         {
             if (Inventory.AddItem(ItemType.Glue))
             {
+                PlayerController.Coins -= Prices[0];
             Stocks[0]--;
             UpdateUI();
             }
@@ -78,11 +80,12 @@ public class ShopManager : MonoBehaviour, IInitable
 
     public void Buy2()
     {
-        if (PlayerController.Coins > Prices[1])
+        if (PlayerController.Coins >= Prices[1])
         {
             if (Inventory.AddItem(ItemType.Flower))
             {
-            Stocks[1]--;
+                PlayerController.Coins -= Prices[1];
+                Stocks[1]--;
             UpdateUI();
             }
             else
@@ -98,11 +101,12 @@ public class ShopManager : MonoBehaviour, IInitable
 
     public void Buy3()
     {
-        if (PlayerController.Coins > Prices[2])
+        if (PlayerController.Coins >= Prices[2])
         {
             if (Inventory.AddItem(ItemType.Sword))
             {
-            Stocks[2]--;
+                PlayerController.Coins -= Prices[2];
+                Stocks[2]--;
             UpdateUI();
             }
             else
@@ -118,11 +122,12 @@ public class ShopManager : MonoBehaviour, IInitable
 
     public void Buy4()
     {
-        if (PlayerController.Coins > Prices[3])
+        if (PlayerController.Coins >= Prices[3])
         {
             if (Inventory.AddItem(ItemType.ColumnPiece))
             {
-            Stocks[3]--;
+                PlayerController.Coins -= Prices[3];
+                Stocks[3]--;
             UpdateUI();
             }
             else

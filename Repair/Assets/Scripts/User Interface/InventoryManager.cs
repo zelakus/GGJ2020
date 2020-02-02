@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             var image = Instantiate(InventoryItem, Slots[index].transform).GetComponent<Image>();
             image.sprite = item.Icon;
 
-            if (item.Type == ItemType.Glue || item.Type == ItemType.Pizza)
+            if (item.Type == ItemType.Glue || item.Type == ItemType.Pizza || item.Type == ItemType.Sword)
                 image.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
@@ -106,6 +106,12 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
         Inventory.Deserialize();
         for (int i=0;i<Inventory.Size;i++)
             SetUI(i, Inventory.GetItem(i));
+    }
+
+    public static void UpdateUI()
+    {
+        for (int i = 0; i < Inventory.Size; i++)
+            Instance.SetUI(i, Inventory.GetItem(i));
     }
 
     public static void HoverItem(GameObject dragItem)
@@ -154,6 +160,9 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             case ItemType.Pizza:
                 GameObject.FindWithTag("Player").GetComponent<Health>().CurrentHealth++;
                 Inventory.RemoveAt(ind);
+                break;
+            case ItemType.Sword:
+
                 break;
         }
     }
