@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour
             TriggerEscMenu();
     }
 
-    //TODO get metoduna çek
+    //TODO will be Private again.
     public bool isEscMenuVisible = false;
     public void TriggerEscMenu()
     {
@@ -45,7 +45,7 @@ public class UIController : MonoBehaviour
         else
             Time.timeScale = 1f;
     }
-
+    //TODO will be private again
     public bool isDeathScreenVisible = false;
     public void TriggerDeathScreen()
     {

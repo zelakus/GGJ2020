@@ -14,7 +14,7 @@ public class SavingWrapper : MonoBehaviour
         
     }
 
-    //TODO bunları daha sonra scene Changer a al 
+    //TODO bunları daha sonra scene Changer a al ,Take theese to Scene Changer
     public void NewGame()
     {
         SceneManager.LoadScene(1);
@@ -34,7 +34,7 @@ public class SavingWrapper : MonoBehaviour
 
     public IEnumerator LoadLastScene()
     {
-        //TODO bunu persistent objecte yerleştir. 
+        //TODO bunu persistent objecte yerleştir. Make it Persistent Object maybe along with Menu in Main Menu Scene
         DontDestroyOnLoad(this.gameObject);
         yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         Fader fader = FindObjectOfType<Fader>();

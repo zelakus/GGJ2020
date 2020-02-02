@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, ISaveable
     [SerializeField] uint currentHealth;
     public uint CurrentHealth
     {
-        //TODO Buraya göz gezdir. Death Handlerdan sadece player çekiyor niyeyse.
+        //TODO Buraya göz gezdir. Death Handlerdan sadece player çekiyor niyeyse. Check again Only player.
         get
         {
             return currentHealth;
