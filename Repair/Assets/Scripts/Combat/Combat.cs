@@ -48,7 +48,8 @@ public class Combat : MonoBehaviour
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f)
         {
             var offset = transform.position - player.transform.position;
-            transform.LookAt(player.transform.position - new Vector3(0f, player.transform.position.y));
+            var f = Mathf.Sign(transform.position.x - player.transform.position.x);
+            transform.LookAt(transform.position + Vector3.left*f);
             anim.SetBool("isAttacking", true);
 
         }
