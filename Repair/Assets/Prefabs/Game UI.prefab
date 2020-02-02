@@ -167,8 +167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -175.82986, y: 241.84998}
-  m_SizeDelta: {x: 321.9, y: 460}
+  m_AnchoredPosition: {x: -175.82986, y: 235.93}
+  m_SizeDelta: {x: 179.5, y: 471.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &484634283
 CanvasRenderer:
@@ -198,8 +198,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c16ac3ed073c07b42871e4fe9007a4d4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6793,7 +6793,7 @@ MonoBehaviour:
     linkCount: 0
     lineCount: 1
     pageCount: 1
-    materialCount: 2
+    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -7528,6 +7528,13 @@ MonoBehaviour:
   ItemPanel: {fileID: 1386331355}
   ItemName: {fileID: 1622548786}
   ItemInfo: {fileID: 774101409}
+  ColumnParts:
+  - {fileID: 21300000, guid: c16ac3ed073c07b42871e4fe9007a4d4, type: 3}
+  - {fileID: 21300000, guid: fd8f1b0a770a6bb4c99586c24ce109b9, type: 3}
+  - {fileID: 21300000, guid: 7eb73a78bde8c154b923507c7781ba62, type: 3}
+  - {fileID: 21300000, guid: b11855886a5a427439e14bd8037e52af, type: 3}
+  - {fileID: 21300000, guid: 436026747457112478a4da8040fc4a8e, type: 3}
+  Column: {fileID: 484634282}
 --- !u!1 &8046433288165833029
 GameObject:
   m_ObjectHideFlags: 0

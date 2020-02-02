@@ -27,6 +27,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             Slots.Add(slot);
         }
         Load();
+        Inventory.ColumnUpdated = ColumnUpdate;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -126,8 +127,29 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
         }
     }
 
+    public Sprite[] ColumnParts;
+    public Image Column;
     public static void UseGlue(Transform t)
     {
+        var stones = Inventory.GetItems(ItemType.ColumnPiece);
+        if (stones.Count >= 3)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Inventory.RemoveAt(stones[i]);
+                Instance.SetUI(stones[i], null);
+            }
+        }
 
+        var glue = t.parent.GetComponent<ItemSlot>().Index;
+        Inventory.RemoveAt(glue);
+        Instance.SetUI(glue, null);
+        Inventory.ColumnCount++;
+    }
+
+    void ColumnUpdate()
+    {
+        //Column UI update
+        Instance.Column.sprite = Instance.ColumnParts[Inventory.ColumnCount];
     }
 }
