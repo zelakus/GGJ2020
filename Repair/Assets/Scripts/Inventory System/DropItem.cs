@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour,ISaveable
 {
-
+   
     public ItemType itemtype;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,11 @@ public class DropItem : MonoBehaviour,ISaveable
     {
         
     }
+
+
+   
+
+
 
 
     public object CaptureState()
