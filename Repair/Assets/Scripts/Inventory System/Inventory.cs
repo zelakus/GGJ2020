@@ -8,21 +8,21 @@ public class Inventory
 {
     //Private vars
     private readonly static ItemAsset[] Bag = new ItemAsset[12];
-    private static uint _coin = 0;
+    private static uint _parts = 0;
 
     //Public vars
-    public static uint Coin {
+    public static uint ColumnCount {
         get
         {
-            return _coin;
+            return _parts;
         }
         set
         {
-            _coin = value;
-            CoinsUpdated?.Invoke();
+            _parts = value;
+            ColumnUpdated?.Invoke();
         }
     }
-    public static Action CoinsUpdated;
+    public static Action ColumnUpdated;
     public static int Size
     {
         get
@@ -70,7 +70,7 @@ public class Inventory
         var indices = new List<int>();
         for (int i = 0; i < Bag.Length; i++)
         {
-            if (Bag[i].Type == type)
+            if (Bag[i] != null && Bag[i].Type == type)
                 indices.Add(i);
         }
 
@@ -145,13 +145,15 @@ public class Inventory
         {
             SetItem(i, (ItemType)data.Items[i]);
         }
+        ColumnCount = data.ColumnCount;
     }
 
     public static void Serialize()
     {
         var data = new InventoryData
         {
-            Items = new int[Bag.Length]
+            Items = new int[Bag.Length],
+            ColumnCount = ColumnCount
         };
         for (int i = 0; i < Bag.Length; i++)
             data.Items[i] = (int)(Bag[i]?.Type ?? 0);
