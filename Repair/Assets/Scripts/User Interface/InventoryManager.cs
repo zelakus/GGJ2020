@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
             var image = Instantiate(InventoryItem, Slots[index].transform).GetComponent<Image>();
             image.sprite = item.Icon;
 
-            if (item.Type == ItemType.Glue)
+            if (item.Type == ItemType.Glue || item.Type == ItemType.Pizza)
                 image.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
@@ -131,6 +131,11 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
     public Image Column;
     public static void UseGlue(Transform t)
     {
+        var ind = t.parent.GetComponent<ItemSlot>().Index;
+        var it = Inventory.GetItem(ind);
+        switch (it.Type)
+        {
+            case ItemType.Glue:
         var stones = Inventory.GetItems(ItemType.ColumnPiece);
         if (stones.Count >= 3)
         {
@@ -145,6 +150,12 @@ public class InventoryManager : MonoBehaviour, IDropHandler, IInitable
         Inventory.RemoveAt(glue);
         Instance.SetUI(glue, null);
         Inventory.ColumnCount++;
+                break;
+            case ItemType.Pizza:
+                GameObject.FindWithTag("Player").GetComponent<Health>().CurrentHealth++;
+                Inventory.RemoveAt(ind);
+                break;
+        }
     }
 
     void ColumnUpdate()
