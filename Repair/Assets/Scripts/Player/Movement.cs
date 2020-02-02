@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour, ISaveable
         {
             isJumping = true;
             anim.SetBool("isJumping", true);
-            rb.AddForce(new Vector3(0, jumpForce) * Time.deltaTime * 5000f);
+            rb.AddForce(new Vector3(0, jumpForce) /** Time.deltaTime*/*1/60f * 5000f);
             Debug.Log(isJumping);
         }
     }
