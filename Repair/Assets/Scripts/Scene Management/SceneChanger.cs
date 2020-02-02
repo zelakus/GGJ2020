@@ -11,6 +11,8 @@ public class SceneChanger : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UIController.Instance.TriggerEscMenu();
+        
     }
 
     public void QuitToMainMenu()

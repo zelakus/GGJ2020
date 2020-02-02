@@ -9,12 +9,16 @@ public class SavingWrapper : MonoBehaviour
     const string defaultSaveFile = "save";
     [SerializeField] float fadeInTime = 0.2f;
 
-    //private void Awake()
-    //{
-    //    StartCoroutine(LoadLastScene());
-    //}
+    private void Awake()
+    {
+        //StartCoroutine(LoadLastScene());
+        //if (SceneManager.GetActiveScene().buildIndex!=0)
+        //{
+        //    Load();
+        //}
+    }
 
-        public void NewGame()
+    public void NewGame()
     {
         SceneManager.LoadScene(1);
     }
@@ -22,6 +26,7 @@ public class SavingWrapper : MonoBehaviour
     public void LoadScene()
     {
         StartCoroutine(LoadLastScene());
+        
     }
 
     public IEnumerator LoadLastScene()
@@ -30,6 +35,7 @@ public class SavingWrapper : MonoBehaviour
         Fader fader = FindObjectOfType<Fader>();
         fader.FadeOutImmediate();
         yield return fader.FadeIn(fadeInTime);
+        
     }
 
     void Update()
