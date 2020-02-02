@@ -6,6 +6,7 @@ public class Combat : MonoBehaviour
 {
     Animator anim;
     GameObject player;
+    public GameObject hitFx;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class Combat : MonoBehaviour
         {
             attack();
         }
-        
+
 
         if (gameObject.tag != "Player")
         {
@@ -49,7 +50,7 @@ public class Combat : MonoBehaviour
             var offset = transform.position - player.transform.position;
             transform.LookAt(player.transform.position - new Vector3(0f, player.transform.position.y));
             anim.SetBool("isAttacking", true);
-            
+
         }
         else
         {
@@ -66,8 +67,8 @@ public class Combat : MonoBehaviour
     //    }
     //    if (collision.gameObject.layer != gameObject.layer && collision.gameObject.layer != 0)
     //    {
-            
-           
+
+
     //    }
     //}
     //private void OnTriggerEnter(Collider other)
@@ -84,19 +85,21 @@ public class Combat : MonoBehaviour
         if (Vector3.Distance(player.transform.position, gameObject.transform.position) < 5f)
         {
             player.GetComponent<Health>().CurrentHealth -= 1;
+            Destroy(Instantiate(hitFx, player.transform.position + Vector3.up, Quaternion.identity), 2);
         }
     }
 
     void SwordHit()
     {
-      var a=   GameObject.FindObjectsOfType<Combat>();
+        var a = GameObject.FindObjectsOfType<Combat>();
         foreach (var item in a)
         {
             if (item.gameObject.tag != "Player")
             {
-                if (Vector3.Distance(item.gameObject.transform.position, player.transform.position)<3)
+                if (Vector3.Distance(item.gameObject.transform.position, player.transform.position) < 3)
                 {
                     item.gameObject.GetComponent<Health>().CurrentHealth -= 1;
+                    Destroy(Instantiate(hitFx, item.transform.position + Vector3.up, Quaternion.identity), 2);
                 }
             }
         }
