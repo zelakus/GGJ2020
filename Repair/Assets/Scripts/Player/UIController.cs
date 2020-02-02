@@ -34,7 +34,8 @@ public class UIController : MonoBehaviour
             TriggerEscMenu();
     }
 
-    bool isEscMenuVisible = false;
+    //TODO will be Private again.
+    public bool isEscMenuVisible = false;
     public void TriggerEscMenu()
     {
         isEscMenuVisible ^= true; //Trigger
@@ -44,8 +45,8 @@ public class UIController : MonoBehaviour
         else
             Time.timeScale = 1f;
     }
-
-    bool isDeathScreenVisible = false;
+    //TODO will be private again
+    public bool isDeathScreenVisible = false;
     public void TriggerDeathScreen()
     {
         if (isInventoryVisible)

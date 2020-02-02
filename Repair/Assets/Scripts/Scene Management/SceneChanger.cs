@@ -11,8 +11,11 @@ public class SceneChanger : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        UIController.Instance.TriggerEscMenu();
-        
+        UIController.Instance.EscMenuPanel.SetActive(false);
+        UIController.Instance.DeathScreenPanel.SetActive(false);
+        Time.timeScale = 1f;
+        UIController.Instance.isEscMenuVisible = false;
+        UIController.Instance.isDeathScreenVisible = false;
     }
 
     public void QuitToMainMenu()
