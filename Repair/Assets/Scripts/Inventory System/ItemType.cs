@@ -5,5 +5,6 @@
     Sword,
     Bone,
     Flower,
-    ColumnPiece
+    ColumnPiece,
+    Pizza
 }
