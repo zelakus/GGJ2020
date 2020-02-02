@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-//Bu kodu yazmadık, yok öyle bir şey
+//Needs a clean up
 public class ShopManager : MonoBehaviour, IInitable
 {
     public static ShopManager Instance;
-    public List<Button> Buttons;
-    public int[] Prices;
-    public int[] Stocks;
+    public List<Button> Buttons; //Should've been generated at runtime depending on given items. (That we didn't actually give...)
+    public int[] Prices; //Prices should've been used from item asset infos
+    public int[] Stocks; //Should've had such a variable in item asset info
 
     public void Init()
     {
@@ -60,12 +60,19 @@ public class ShopManager : MonoBehaviour, IInitable
     {
         if (PlayerController.Coins > Prices[0])
         {
+            if (Inventory.AddItem(ItemType.Glue))
+            {
             Stocks[0]--;
             UpdateUI();
+            }
+            else
+            {
+                //TODO show inventory is full
+            }
         }
         else
         {
-            //TODO show error?
+            //TODO show not enough money
         }
     }
 
@@ -73,12 +80,19 @@ public class ShopManager : MonoBehaviour, IInitable
     {
         if (PlayerController.Coins > Prices[1])
         {
+            if (Inventory.AddItem(ItemType.Flower))
+            {
             Stocks[1]--;
             UpdateUI();
+            }
+            else
+            {
+                //TODO show inventory is full
+            }
         }
         else
         {
-            //TODO show error?
+            //TODO show not enough money
         }
     }
 
@@ -86,12 +100,19 @@ public class ShopManager : MonoBehaviour, IInitable
     {
         if (PlayerController.Coins > Prices[2])
         {
+            if (Inventory.AddItem(ItemType.Sword))
+            {
             Stocks[2]--;
             UpdateUI();
+            }
+            else
+            {
+                //TODO show inventory is full
+            }
         }
         else
         {
-            //TODO show error?
+            //TODO show not enough money
         }
     }
 
@@ -99,12 +120,19 @@ public class ShopManager : MonoBehaviour, IInitable
     {
         if (PlayerController.Coins > Prices[3])
         {
+            if (Inventory.AddItem(ItemType.ColumnPiece))
+            {
             Stocks[3]--;
             UpdateUI();
+            }
+            else
+            {
+                //TODO show inventory is full
+            }
         }
         else
         {
-            //TODO show error?
+            //TODO show not enough money
         }
     }
 }

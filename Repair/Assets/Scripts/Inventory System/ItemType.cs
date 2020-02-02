@@ -6,5 +6,6 @@
     Bone,
     Flower,
     ColumnPiece,
-    Pizza
+    Pizza,
+    Coin
 }
