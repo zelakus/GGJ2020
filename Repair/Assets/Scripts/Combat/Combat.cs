@@ -16,8 +16,11 @@ public class Combat : MonoBehaviour
 
     void Update()
     {
-       
-        attack();
+        if (gameObject.tag == "Player")
+        {
+            attack();
+        }
+        
 
         if (gameObject.tag != "Player")
         {
@@ -54,12 +57,18 @@ public class Combat : MonoBehaviour
         }
     }
 
+    //TODO buraya göz gezdir. Kendine vurunca da canı gidiyor. Veya direk ona koştun mu can gidiyor. Keza bizden de
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag =="Player")
         {
             player.GetComponent<Health>().CurrentHealth -= 1;
         }
+        else if (collision.gameObject.layer == 10)
+        {
+            collision.gameObject.GetComponent<Health>().CurrentHealth -= 1;
+        }
+       
     }
 
 

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, ISaveable
 {
     [SerializeField] uint maxHealth = 5;
 
-    public uint currentHealth;
+    [SerializeField] uint currentHealth;
     public uint CurrentHealth
     {
+        //TODO Buraya göz gezdir. Death Handlerdan sadece player çekiyor niyeyse.
         get
         {
             return currentHealth;
@@ -20,14 +21,18 @@ public class Health : MonoBehaviour
             //(currentHealth == 0 ? Died : HealthUpdated)?.Invoke();
             if (currentHealth == 0)
             {
+                if (gameObject.tag != "Player")
+                {
+                    Destroy(gameObject);
+                }
                 Died();
             }
-            else
-                HealthUpdated();
+            //else
+            //    HealthUpdated();
             
         }
     }
-    public event Action HealthUpdated;
+    //public event Action HealthUpdated;
     public event Action Died;
 
     private void Awake()
@@ -35,4 +40,13 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public object CaptureState()
+    {
+        return currentHealth;
+    }
+
+    public void RestoreState(object state)
+    {
+        CurrentHealth= (uint)state;
+    }
 }

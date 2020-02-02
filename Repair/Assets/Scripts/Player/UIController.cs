@@ -35,7 +35,7 @@ public class UIController : MonoBehaviour
     }
 
     bool isEscMenuVisible = false;
-    void TriggerEscMenu()
+    public void TriggerEscMenu()
     {
         isEscMenuVisible ^= true; //Trigger
         EscMenuPanel.SetActive(isEscMenuVisible);

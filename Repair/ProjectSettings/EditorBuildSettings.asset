@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ba965a8204ffe424cb2f47ce24164135
+  - enabled: 1
+    path: Assets/Scenes/zela_playground.unity
+    guid: a7bf73670a9ab74478fc993e737701f2
+  - enabled: 1
     path: Assets/Scenes/Movement.unity
     guid: 23eb9965761c3ae459625baadf83f535
   - enabled: 1

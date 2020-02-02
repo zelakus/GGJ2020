@@ -2,19 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class SavingWrapper : MonoBehaviour
 {
     const string defaultSaveFile = "save";
     [SerializeField] float fadeInTime = 0.2f;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    StartCoroutine(LoadLastScene());
+    //}
+
+        public void NewGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadScene()
     {
         StartCoroutine(LoadLastScene());
     }
 
-    private IEnumerator LoadLastScene()
+    public IEnumerator LoadLastScene()
     {
         yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         Fader fader = FindObjectOfType<Fader>();
